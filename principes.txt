@@ -1,0 +1,48 @@
+ANALYSE DES PRINCIPES DE CONCEPTION LOGICIELLE
+
+PRINCIPES RESPECTÉS :
+
+1. PRINCIPE DE RESPONSABILITÉ UNIQUE (SRP) :
+   - Chaque classe a une responsabilité claire et unique
+   - CoursBuilder : seulement la construction d'objets Cours
+   - CoursDecorator : seulement l'ajout de fonctionnalités
+   - GestionnaireEmploiDuTemps : seulement la gestion des cours et observateurs
+
+2. PRINCIPE OUVERT/FERMÉ (OCP) :
+   - Le code est ouvert à l'extension mais fermé à la modification
+   - On peut ajouter de nouveaux décorateurs (CoursEnAnglais, etc.) sans modifier les classes existantes
+   - On peut ajouter de nouveaux observateurs sans modifier le sujet
+
+3. PRINCIPE DE SÉGRÉGATION DES INTERFACES (ISP) :
+   - Les interfaces sont spécifiques et cohérentes
+   - ICours : seulement méthodes liées aux cours
+   - Observer : seulement la méthode update()
+   - Subject : seulement méthodes de gestion d'observateurs
+
+4. PRINCIPE D'INVERSION DES DÉPENDANCES (DIP) :
+   - Les modules de haut niveau ne dépendent pas des modules de bas niveau
+   - GestionnaireEmploiDuTemps dépend de l'interface Subject, pas d'implémentations concrètes
+   - Les décorateurs dépendent de l'interface ICours
+
+5. PRINCIPE DE SUBSTITUTION DE LISKOV (LSP) :
+   - Les sous-classes peuvent remplacer les classes parentes
+   - CoursEnLigne peut être utilisé partout où ICours est attendu
+   - Tous les observateurs implémentent correctement l'interface Observer
+
+ASPECTS À AMÉLIORER :
+
+1. COUPLAGE FORT DANS LE BUILDER :
+   - CoursBuilder connaît tous les détails d'implémentation de Cours
+   - Si Cours change, CoursBuilder doit changer aussi
+
+2. MANQUE D'ABSTRACTION DANS LES OBSERVERS :
+   - Les classes Etudiant et Responsable ont une implémentation similaire
+   - Pourrait être factorisée dans une classe abstraite
+
+CONCLUSION :
+
+Globalement, le code respecte bien les principes SOLID grâce aux patterns implémentés.
+Les violations mineures sont principalement dues à la simplicité de l'exercice pédagogique.
+
+Les patterns utilisés (Builder, Observer, Decorator) aident naturellement à respecter
+les bonnes pratiques de conception orientée objet.
